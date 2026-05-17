@@ -29,6 +29,7 @@
   h2 { font-size: 22px; border-bottom: 1px solid #e2e2e2; padding-bottom: 6px; }
   h3 { font-size: 17px; }
   p, ul, ol { margin: 0 0 1em; }
+  img { max-width: 100%; height: auto; display: block; margin: 1em 0; border-radius: 4px; }
   code {
     background: #eef0f2;
     padding: 2px 6px;
@@ -102,8 +103,7 @@
 
       md = md.split('{{PASSWORD}}').join(pwHtml);
 
-      var ESC = ' ESC_DOLLAR ';
-      md = md.replace(/\\\$/g, ESC);
+      md = md.replace(/\\\$/g, '<span class="no-katex">$</span>');
 
       var math = [];
       md = md.replace(/\$\$([\s\S]+?)\$\$/g, function (m) {
@@ -116,7 +116,6 @@
       var html = marked.parse(md);
 
       html = html.replace(/@@MATH(\d+)@@/g, function (_, i) { return math[+i]; });
-      html = html.split(ESC).join('$');
 
       var el = document.getElementById('content');
       el.innerHTML = html;
@@ -130,7 +129,8 @@
             { left: '\\[', right: '\\]', display: true }
           ],
           throwOnError: false,
-          ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option']
+          ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option'],
+          ignoredClasses: ['no-katex']
         });
       }
     }

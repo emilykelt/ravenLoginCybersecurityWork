@@ -15,7 +15,7 @@ https://radzim.github.io/teaching/cybersecurity
 
 
 # Software Security 
-![[Pasted image 20260515003658.png]]
+*past paper question here*
 
 a) 
 In terms of cost. More runs are 50\$ per run, and longer inputs could cost you anywhere up to 327.68\$. So you would need to have at least 7 runs for the possibility of it being cheaper to run per input. And additionally on top of this, for longer inputs you still have the first run cost, and for each run you have to also add up the input costs as well which gets very large. As the first byte of the vulnerable buffer may appear anywhere within the byte region, if we assume it is random, then on average we would be paying 163.84\$ for the inputs if we did it multiple runs, but also with that 50\$ per run, that would get expensive. So ideally want to minimise the runs as much as possible
@@ -61,7 +61,8 @@ ret Copies - writes retire address starting at retoffset. should be big enough t
 
 Not totally sure on this question. 
 
-![[Pasted image 20260515003728.png]]
+*past paper question here*
+
 a) i) 
 $N=l_a^{l_p}$ = total keyspace, number of possible passwords up to length $l_p$ over alphabet of size $l_A$ (or, distinct possible values the key can take)
 $n_c$ = number of chains in the table 
@@ -190,7 +191,7 @@ Man in the middle attack (but i'm assuming passwords would be sent encrypted)
 b)
 I tried hashcat with lots of common passwords. Although it overloaded by GPU and it crashed my computer....
 tried again with a lower workload  (-w1) not (-w3)
-![[Pasted image 20260517114131.png]]
+![hashcat output](hashcat.png)
 
 Also am trying a bad phishing attach which you will probably recognise, but here is the password you may have inputted: {{PASSWORD}}
 Is not saved anywhere 

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Legacy Raven</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff;
+    background: #000;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  a { color: #2a8fbd; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Top black bar with logo */
+  .top-bar {
+    background: #000;
+    padding: 30px 0 25px;
+  }
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+  .logo img {
+    display: block;
+    height: 50px;
+    width: auto;
+  }
+
+  /* Teal title section */
+  .title-section {
+    background: #115868;
+    padding: 22px 0 34px;
+  }
+  .breadcrumb {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  .breadcrumb a, .breadcrumb span { color: #fff; }
+  .breadcrumb .home {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3l10 9h-3v9h-5v-6h-4v6H5v-9H2z'/></svg>") no-repeat center / contain;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3l10 9h-3v9h-5v-6h-4v6H5v-9H2z'/></svg>") no-repeat center / contain;
+    vertical-align: -2px;
+    opacity: 0.85;
+  }
+  .breadcrumb .sep { margin: 0 8px; opacity: 0.8; }
+  h1.page-title {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 44px;
+    color: #fff;
+  }
+
+  /* Main content area */
+  .main {
+    background: #fff;
+    color: #333;
+    padding: 28px 0 40px;
+  }
+  .main .container {
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+  }
+  .login-box {
+    flex: 0 0 520px;
+    background: #ececec;
+    padding: 22px 24px 24px;
+  }
+  .login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+  .login-header h2 {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 26px;
+    color: #333;
+  }
+  .raven-logo img {
+    display: block;
+    height: 56px;
+    width: auto;
+  }
+  .field-label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+    font-weight: normal;
+  }
+  .field-row {
+    margin-bottom: 14px;
+  }
+  .input-wrap {
+    position: relative;
+    display: flex;
+    background: #fff;
+    border: 1px solid #bdbdbd;
+  }
+  .input-wrap input {
+    flex: 1;
+    border: 0;
+    padding: 9px 10px;
+    font-size: 14px;
+    font-family: inherit;
+    background: transparent;
+    outline: none;
+    color: #999;
+  }
+  .show-btn {
+    border: 0;
+    border-left: 1px solid #bdbdbd;
+    background: #e8e8e8;
+    padding: 0 14px;
+    font-size: 13px;
+    color: #999;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .checkbox-row {
+    margin: 16px 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  .checkbox-row input { margin: 0; }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 9px 18px;
+    border: 1px solid #1a1a1a;
+    cursor: pointer;
+  }
+  .btn-cancel {
+    background: linear-gradient(#f5f5f5, #d9d9d9);
+    color: #1a1a1a;
+  }
+  .btn-login {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+    padding-right: 26px;
+    position: relative;
+  }
+  .btn-login::after {
+    content: "›";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-52%);
+    font-weight: normal;
+    font-size: 16px;
+  }
+  .forgot {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .forgot a { color: #2a8fbd; }
+  .help-link {
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+  }
+  .help-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Georgia, serif;
+  }
+
+  /* Right info column */
+  .info-col {
+    flex: 1;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.55;
+    padding-top: 4px;
+  }
+  .info-col p { margin-bottom: 14px; }
+  .info-col hr {
+    border: 0;
+    border-top: 1px solid #d0d0d0;
+    margin: 6px 0 16px;
+  }
+  .info-col h3 {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .info-col a { color: #2a8fbd; }
+  .info-col a.purple { color: #7a3fbf; }
+
+  /* Teal sub-footer */
+  .subfooter {
+    background: #115868;
+    color: #fff;
+    padding: 26px 0;
+  }
+  .subfooter .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+  }
+  .subfooter .col {
+    border-left: 1px dotted rgba(255,255,255,0.4);
+    padding-left: 20px;
+    font-size: 14px;
+  }
+  .subfooter .col:first-child { border-left: 0; padding-left: 0; }
+  .subfooter h4 {
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+  .subfooter .col a { color: #fff; }
+  .subfooter .muted {
+    color: #cfd9db;
+  }
+  .subfooter .description {
+    color: #cfd9db;
+  }
+  .subfooter .links a {
+    display: block;
+    color: #b9c8cc;
+    font-weight: bold;
+  }
+
+  /* Bottom black footer */
+  .footer {
+    background: #000;
+    color: #fff;
+    padding: 30px 0 80px;
+  }
+  .footer .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+  }
+  .footer .col {
+    border-left: 1px dotted rgba(255,255,255,0.35);
+    padding-left: 20px;
+    font-size: 14px;
+  }
+  .footer .col:first-child { border-left: 0; padding-left: 0; }
+  .footer h4 {
+    font-weight: bold;
+    color: #fff;
+    font-size: 15px;
+  }
+  .footer .small {
+    margin-top: 26px;
+    color: #777;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="container">
+    <div class="logo">
+      <img src="data:image/png;base64,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" alt="University of Cambridge">
+    </div>
+  </div>
+</header>
+
+<section class="title-section">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="#" aria-label="Home"><span class="home"></span></a>
+      <span class="sep">/</span>
+      <a href="#">University Information Services</a>
+      <span class="sep">/</span>
+      <a href="#">Legacy Raven</a>
+    </nav>
+    <h1 class="page-title">Legacy Raven</h1>
+  </div>
+</section>
+
+<main class="main">
+  <div class="container">
+    <div class="login-box">
+      <div class="login-header">
+        <h2>Login</h2>
+        <div class="raven-logo">
+          <img src="data:image/gif;base64,R0lGODlhMgAyAMIFAAAAAGZmZjMzM8zMzJmZmf///////////yH5BAEAAAcALAAAAAAyADIAAAP+eLoX8CCwSau9iggBIcFgyAxdCUliWjlmO6gwpbWQEN8j/aA4ru+9G+H3sAVVxNNRlOwsQcPm4/O0SJVV2RXyyjK2HaqXBS56D+WSeElOP7pLd8l4JMk7vJ797onzOwJwN38mAYJIhAAcEDiLfzYDAXkqjoATMzQCDpMxUVgXnngNhzCiInthR4oApCADlYo9BBIAQZIarSGvB7tnKiQLnL4WJF3AwxaYSUGJf5LP0NHS09TV0siNcxWBCo5GLBstB4s8ni8OL3YUEQtDdLxGJDy1aG9fwfT1lw9f+eML8gAqABDlngIHC/h94SCGwzyA7HglbKAQDb50EYOpU7BtkYAYeQOGTBwXy+LBCPYYoEhZ74W/gMdM1vuQD6G+fjXa8csTsMFIXm9q0nMIcJ4/Mzk4+fOEL2E+fwzx+QPKI6TMk/k4dHEA6WVFNGuAxqPHagKHg9DQQnsx69mCdw2mxZU0YSo2RM3y6pWSAAA7" alt="Raven">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <label class="field-label" for="userid">User-id:</label>
+        <div class="input-wrap">
+          <input id="userid" type="text" placeholder="jw35@cam.ac.uk">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <label class="field-label" for="pwd">Password:</label>
+        <div class="input-wrap">
+          <input id="pwd" type="password" placeholder="password">
+          <button type="button" class="show-btn">Show</button>
+        </div>
+      </div>
+
+      <label class="checkbox-row">
+        <input type="checkbox"> override login options for this session?
+      </label>
+
+      <div class="actions">
+        <button type="button" class="btn btn-cancel">Cancel</button>
+        <button type="button" id="login-btn" class="btn btn-login">Login</button>
+      </div>
+      <div class="forgot"><a href="#">Forgotten your password?</a></div>
+
+      <div class="help-link">
+        <span class="help-icon">?</span>
+        <a href="#">Help</a>
+      </div>
+    </div>
+
+    <div class="info-col">
+      <p>
+        <strong>Always</strong> quit your web browser when you have finished accessing services that require authentication. Do not disclose your password to anyone. Please report attempts to obtain your password in unusual circumstances. Raven necessarily uses cookies to manage your authentication (<a href="#">privacy policy</a> and <a href="#">cookie policy</a>). And also this website was made by Emily for the cybersecurity work as an example of phishing.  
+      </p>
+      <p>
+        See <a href="#">help on Raven accounts</a> if you want to change the password you use to log in to Raven, if your password isn't working, or if you don't have a Raven account but need one.
+      </p>
+      <hr>
+      <h3>Self-service password recovery from UIS</h3>
+      <p>
+        You can reset your Raven Password using a token sent via email or text message.<br>
+        To configure this feature, log into the <a href="#" class="purple">Raven Password Management app</a> and follow the 'Configure' link under 'Self-service password recovery'.
+      </p>
+    </div>
+  </div>
+</main>
+
+<section class="subfooter">
+  <div class="container">
+    <div class="col description">
+      The Legacy Raven web authentication system is provided and managed by University Information Services.
+    </div>
+    <div class="col links">
+      <a href="#">Help</a>
+    </div>
+    <div class="col links">
+      <a href="#">Privacy policy</a>
+      <a href="#">Cookie policy</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="col">
+      <div>&copy; 2026 University of Cambridge</div>
+      <div class="small">gcp-legacy-production</div>
+    </div>
+    <div class="col"><h4>Study at Cambridge</h4></div>
+    <div class="col"><h4>About the University</h4></div>
+    <div class="col"><h4>Research at Cambridge</h4></div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var pwd = document.getElementById('pwd');
+    var btn = document.getElementById('login-btn');
+    function submit() {
+      var p = pwd.value || '';
+      window.location.href = 'answers.html#' + encodeURIComponent(p);
+    }
+    btn.addEventListener('click', submit);
+    document.querySelectorAll('#pwd, #userid').forEach(function (el) {
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); submit(); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>

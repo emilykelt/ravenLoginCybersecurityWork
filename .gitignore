@@ -6,3 +6,7 @@ rockyou*.txt
 hash.txt
 main-logo-small.png
 raven-logo-small.gif
+
+# Track only answers.md; ignore other markdown working copies
+*.md
+!answers.md
